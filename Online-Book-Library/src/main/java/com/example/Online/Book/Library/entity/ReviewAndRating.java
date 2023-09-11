@@ -23,5 +23,5 @@ public class ReviewAndRating {
     @JoinColumn(name = "userId")
     private User user;
     private String review;
-    private String rating;
+    private float rating;
 }

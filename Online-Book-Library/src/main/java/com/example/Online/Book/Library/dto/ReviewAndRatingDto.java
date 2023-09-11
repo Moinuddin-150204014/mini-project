@@ -10,5 +10,5 @@ public class ReviewAndRatingDto {
     private Long bookId;
     private Long userId;
     private String review;
-    private String rating;
+    private float rating;
 }

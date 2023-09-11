@@ -8,7 +8,10 @@ import com.example.Online.Book.Library.service.UserService;
 import com.example.Online.Book.Library.utils.JWTUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import javax.naming.NameNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -40,6 +43,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUser(String email) {
+        User userEntity = userRepository.findByEmail(email).get();
+        if (userEntity == null) {
+            throw new UsernameNotFoundException("No record found belonging to this email");
+        }
         return null;
     }
 

@@ -15,13 +15,13 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @PostMapping("/register")
-    public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto) {
+    @PostMapping("/user/register")
+    public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
         try {
             UserDto newUser = userServiceImpl.createUser(userDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
 }
