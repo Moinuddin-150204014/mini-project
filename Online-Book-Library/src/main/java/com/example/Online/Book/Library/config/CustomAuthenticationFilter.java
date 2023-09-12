@@ -48,7 +48,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String user = ((User)authResult.getPrincipal()).getUsername();
         String accessToken = JWTUtils.generateToken(user);
-        UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
+        UserService userService = (UserService) SpringApplicationContext.getBean("UserServiceImpl");
         UserDto userDto = userService.getUser(user);
 
         AuthenticationResponse authenticationResponse = new AuthenticationResponse();

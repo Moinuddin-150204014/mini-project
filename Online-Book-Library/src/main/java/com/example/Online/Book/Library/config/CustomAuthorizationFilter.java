@@ -40,7 +40,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             String user = JWTUtils.hasTokenExpired(token)? null : JWTUtils.extractUser(token);
             List<GrantedAuthority> authorities = new ArrayList<>();
             if (user != null) {
-                UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
+                UserService userService = (UserService) SpringApplicationContext.getBean("UserServiceImpl");
                 String userRole = userService.getUser(user).getRole();
                 authorities.add(new SimpleGrantedAuthority("ROLE_" + userRole));
                 return new UsernamePasswordAuthenticationToken(user, null, authorities);
